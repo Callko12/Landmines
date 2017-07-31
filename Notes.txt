@@ -1,0 +1,32 @@
+/*
+ * Snake
+ * Kendra Callwood
+ * 1/15/2015
+ *
+ * Title possibility: Landmines??
+ *
+ * What is the purpose of the game? Can you win? Levels?
+ *
+ * Change color of main piece
+ * Make an easy mode with the new piece a different color
+ *
+ * Make a piece that goes around and eats the old pieces?
+ * Make a player that chases block
+ * Give block a face? 
+ * 
+ *
+ * 
+ * Splash Screen w/brand name
+ * High score file 
+ *
+ *
+ * Consider starting with more than 1 Part
+ * Consider writting Score in game, perhaps under board
+ *
+ * Figure out how to use Menu bar to set options, etc
+ *
+ *
+ * throws interrupt exception??
+ *
+ *
+*/
