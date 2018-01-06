@@ -6,9 +6,9 @@ import javax.swing.*;
 
 
 //@SuppressWarnings("serial")
-public class Game extends JPanel { //implements ActionListener{
+public class Game extends JPanel { // implements ActionListener{
 
-	Mines mines;
+	Player player;
 	Food food;
 	JFrame frame;
 	JMenuBar menuBar;
@@ -16,7 +16,7 @@ public class Game extends JPanel { //implements ActionListener{
 	JLabel hScore;
 	static int speed, speed2; // speed2 is to reset the speed
 	static int fSize; // frame size
-	static int sSize; // mines (part) size
+	static int sSize; // mine (part) size
 
 	//ifstream Scores;
 
@@ -34,7 +34,7 @@ public class Game extends JPanel { //implements ActionListener{
 
 	public Game(int fS, int spd) throws InterruptedException  {
 
-		mines = new Mines(this);
+		player = new Player(this);
 		food = new Food(this);
 		speed = spd;
 
@@ -46,7 +46,7 @@ public class Game extends JPanel { //implements ActionListener{
 
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new FlowLayout());
-			hScore = new JLabel("Score: " + (mines.count-1));
+			hScore = new JLabel("Score: " + (player.count-1));
 			hScore.setHorizontalAlignment(SwingConstants.CENTER);
 		bottom.add(hScore);
 		frame.add("South", bottom);
@@ -85,16 +85,17 @@ public class Game extends JPanel { //implements ActionListener{
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
+                                player.keyTyped(e);
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				mines.keyReleased(e);
+				player.keyReleased(e);
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				mines.keyPressed(e);
+				player.keyPressed(e);
 			}
 		});
 		setFocusable(true);
@@ -114,12 +115,12 @@ public class Game extends JPanel { //implements ActionListener{
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 					RenderingHints.VALUE_ANTIALIAS_ON);
-		mines.paint(g2d);
+		player.paint(g2d);
 		food.paint(g2d);
 
 		/*g2d.setColor(Color.GRAY);
 		g2d.setFont(new Font("Verdana", Font.BOLD, 30));
-		g2d.drawString(String.valueOf(mines.count-1), 10, 30);*/
+		g2d.drawString(String.valueOf(player.count-1), 10, 30);*/
 	}
 
 	/*public void actionPerformed(ActionEvent e) {
@@ -177,12 +178,12 @@ public class Game extends JPanel { //implements ActionListener{
 	}
 
 	public void setSize(int s) {
-		mines.setSize(s);
+		player.setSize(s);
 		food.setSize(s);
 	}
 
 	private void move() throws InterruptedException {
-		mines.move();
+		player.move();
 	}
 
 	// Do I need gameOver() and playAgain() both?

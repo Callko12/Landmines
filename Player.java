@@ -4,14 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
 
-public class Mines {
+public class Player {
 	public int DIAMETER;
 	private Game game;
 	int x, xdir, y, ydir = 0;
 	int count = 1;
 	Vector<Part> blocks = new Vector<Part>(5);
 
-	public Mines(Game game) {
+	public Player(Game game) {
 		this.game = game;
 	}
 
@@ -48,6 +48,9 @@ public class Mines {
 			x = x + xdir;
 			y = y + ydir;
 	}
+
+        public void keyTyped(KeyEvent e) {
+        }
 
 	public void keyReleased(KeyEvent e) {
 	}

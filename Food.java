@@ -29,10 +29,10 @@ public class Food {
 
 	public void setFood() {
 		x = (int) (rand.nextInt(game.getWidth() - DIAMETER)/DIAMETER) * DIAMETER;
-		y = (int) (rand.nextInt(game.getHeight() - DIAMETER)/DIAMETER) *DIAMETER;
+		y = (int) (rand.nextInt(game.getHeight() - DIAMETER)/DIAMETER) * DIAMETER;
 
-		for (int i = 0; i < game.mines.count-1; i++) {
-			if ((x == game.mines.blocks.get(i).x) && (y == game.mines.blocks.get(i).y)) {
+		for (int i = 0; i < game.player.count-1; i++) {
+			if ((x == game.player.blocks.get(i).x) && (y == game.player.blocks.get(i).y)) {
 				setFood();
 			}
 		}
