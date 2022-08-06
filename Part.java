@@ -33,11 +33,6 @@ public class Part {
 		return new Rectangle(x, y, DIAMETER, DIAMETER);
 	}
 
-	public int[] getLocation() {
-		int[] arr={x,y};
-		return arr;
-	}
-
 	public void setSize(int d) {
 		DIAMETER = d;
 	}
@@ -48,11 +43,14 @@ public class Part {
 		screenDimension[1] = s.height;
 	}
 
+	public int[] getLocation() {
+		int[] arr={x,y};
+		return arr;
+	}
+
 	public void setRandLocation() {
 		x = (int) (rand.nextInt(screenDimension[0] - DIAMETER)/DIAMETER) * DIAMETER;
 		y = (int) (rand.nextInt(screenDimension[1] - DIAMETER)/DIAMETER) * DIAMETER;
-		System.out.println("frame: "  + screenDimension[0] + " " + screenDimension[1]);
-		System.out.println("New block: "  + this.getLocation()[0] + " " + this.getLocation()[1]);
 	}
 
 }
