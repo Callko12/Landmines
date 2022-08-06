@@ -214,20 +214,15 @@ public class Game extends JPanel { // implements ActionListener{
 	private void move() throws InterruptedException {
 		int pMove = player.move();
 		int eMove = enemy.move(player.getLocation());
-		int[] fCheck = food.checkCollision(player.getBounds(), enemy.getBounds(), getFrameSize());
+		int[] fCheck = food.checkCollision(player.getBounds(), enemy.getBounds());
 
-		if ((fCheck[0] == -1) || (pMove == -1)) 
+		if ((fCheck[0] == -1) || (fCheck[1] == -2) || (pMove == -1)) 
 			this.gameOver();
 		if (fCheck[1] == -1) 
 			enemy.reset();
 
 		lScore.setText("Score: " + fCheck[2]);
 	} 
-
-	public int[] getFrameSize() {
-		int[] ret = {this.getWidth(), this.getHeight()};
-		return ret;
-	}
 
 }
 

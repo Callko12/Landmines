@@ -34,7 +34,7 @@ public class Food extends Part{
 		}
 	}
 
-    public int[] checkCollision(Rectangle pBlock, Rectangle eBlock, int[] fSize) {
+    public int[] checkCollision(Rectangle pBlock, Rectangle eBlock) {
         int[] resultingActions = {0,0,count};
 
         for (Part block: blocks) {
@@ -44,6 +44,10 @@ public class Food extends Part{
             if (eBlock.intersects(block.getBounds())) { // if enemy collides with solid blocks
                 resultingActions[1] = -1;
             }
+        }
+
+        if (eBlock.intersects(pBlock.getBounds())) { // if enemy collides with player
+            resultingActions[1] = -2;
         }
 
         if (pBlock.intersects(getBounds())) { // if player collides with highlighted block
