@@ -5,28 +5,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
 
-public class Enemy {
-	public int DIAMETER;
-	int x, xdir, y, ydir = 0;
+public class Enemy extends Part{
+	int xdir, ydir = 0;
 
 	public Enemy() {
-
 		// Currently, arbitrary coordinates for where Enemy starts on screen
 		x = 0;
 		y = 0;
-	}
-
-	void setSize(int d) {
-		DIAMETER = d;
 	}
     
     public void paint(Graphics2D g) {
         g.setColor(Color.black);
         g.fillRect(x, y, DIAMETER, DIAMETER);
-    }
-    
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, DIAMETER, DIAMETER);
     }
 
 	int move(int[] target) throws InterruptedException {

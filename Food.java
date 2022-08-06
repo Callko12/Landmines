@@ -4,13 +4,11 @@ import java.awt.Color;
 import java.util.*;
 
 public class Food extends Part{
-	private Game game;
 	Random rand = new Random();
     int count = 0;
     Vector<Part> blocks = new Vector<Part>(5);
 
-	public Food(Game g) {
-        this.game = g;
+	public Food() {
 	}
 
     @Override   

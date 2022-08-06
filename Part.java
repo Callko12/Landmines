@@ -5,9 +5,9 @@ import java.util.Random;
 import java.awt.Dimension;
 
 public class Part {
-	int[] screenDimension = {0,0};
 	Random rand = new Random();
-	int DIAMETER;
+	int maxWidth, maxHeight = 0;
+	int DIAMETER; 
 	int x, y = 0;
 	
 
@@ -39,8 +39,8 @@ public class Part {
 
 	public void setSize(Dimension s, int d) {
 		DIAMETER = d;
-		screenDimension[0] = s.width;
-		screenDimension[1] = s.height;
+		maxWidth = s.width - DIAMETER;
+		maxHeight = s.height - DIAMETER;
 	}
 
 	public int[] getLocation() {
@@ -49,8 +49,8 @@ public class Part {
 	}
 
 	public void setRandLocation() {
-		x = (int) (rand.nextInt(screenDimension[0] - DIAMETER)/DIAMETER) * DIAMETER;
-		y = (int) (rand.nextInt(screenDimension[1] - DIAMETER)/DIAMETER) * DIAMETER;
+		x = (int) (rand.nextInt(maxWidth)/DIAMETER) * DIAMETER;
+		y = (int) (rand.nextInt(maxHeight)/DIAMETER) * DIAMETER;
 	}
 
 }

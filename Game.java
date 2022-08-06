@@ -39,8 +39,8 @@ public class Game extends JPanel { // implements ActionListener{
 
 	public Game(int fS, int spd) throws InterruptedException  {
 
-		player = new Player(this);
-		food = new Food(this);
+		player = new Player();
+		food = new Food();
 		enemy = new Enemy();
 		speed = spd;
 
@@ -154,9 +154,9 @@ public class Game extends JPanel { // implements ActionListener{
 	}*/
 
 	public void setSize(Dimension d, int s) {
-		player.setSize(s);
+		player.setSize(d, s);
 		food.setSize(d, s);
-		enemy.setSize(s);
+		enemy.setSize(d, s);
 	}
 
     static void prompt() {

@@ -5,35 +5,20 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
 
-public class Player {
-	private Game game;
-	public int DIAMETER;
-	int x, xdir, y, ydir = 0;
+public class Player extends Part{
+	int xdir, ydir = 0;
 
-	public Player(Game game) {
-		this.game = game;
+	public Player() {
         	// Currently, arbitrary coordinates for where Player starts on screen
         	x = 80;
         	y = 80;
-	}
-
-	void setSize(int d) {
-		DIAMETER = d;
 	}
     
     public void paint(Graphics2D g) {
         g.setColor(Color.blue);
         g.fillRect(x, y, DIAMETER, DIAMETER);
     }
-    
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, DIAMETER, DIAMETER);
-    }
 
-	public int[] getLocation() {
-		int[] arr={x,y};
-		return arr;
-	}
     
     public void kp(String e) {
         if (e == "l") {
@@ -56,9 +41,9 @@ public class Player {
 
 	int move() throws InterruptedException {
 		if ((x + xdir < 0) // Left
-		|| (x + xdir > game.getWidth() - DIAMETER) // Right
+		|| (x + xdir > maxWidth) // Right
 		|| (y + ydir < 0) // Up
-		|| (y + ydir > game.getHeight() - DIAMETER)) // Down 
+		|| (y + ydir > maxHeight)) // Down 
 		{
 			return -1;
 		}
