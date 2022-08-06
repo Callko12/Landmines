@@ -1,41 +1,64 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Color;
-import java.util.Random;
+import java.util.*;
 
-public class Food {
-	int DIAMETER;
-	int x = 0;
-	int y = 0;
+public class Food extends Part{
 	private Game game;
 	Random rand = new Random();
+    int count = 0;
+    Vector<Part> blocks = new Vector<Part>(5);
 
-	public Food(Game game) {
-		this.game = game;
+	public Food(Game g) {
+        this.game = g;
 	}
 
-	void setSize(int d) {
-		DIAMETER = d;
-	}
-
+    @Override   
 	public void paint(Graphics2D g) {
-		g.setColor(Color.blue);
+        super.paint(g);
+        for (Part block: blocks) {
+            block.paint(g);
+        }
+		g.setColor(Color.green);
 		g.fillRect(x, y, DIAMETER, DIAMETER);
 	}
+    
+    
+	public void newFood(int w, int h) {
+		setRandLocation(w, h);
 
-	public Rectangle getBounds() {
-		return new Rectangle(x, y, DIAMETER, DIAMETER);
-	}
-
-	public void setFood() {
-		x = (int) (rand.nextInt(game.getWidth() - DIAMETER)/DIAMETER) * DIAMETER;
-		y = (int) (rand.nextInt(game.getHeight() - DIAMETER)/DIAMETER) * DIAMETER;
-
-		for (int i = 0; i < game.player.count-1; i++) {
-			if ((x == game.player.blocks.get(i).x) && (y == game.player.blocks.get(i).y)) {
-				setFood();
+        // IF coordinates already exist in block array, reset
+        for (Part block: blocks) {
+			if ((x == block.x) && (y == block.y)) {
+				newFood(w, h);
+                break;
 			}
 		}
 	}
 
+    public int[] checkCollision(Rectangle pBlock, Rectangle eBlock, int[] fSize) {
+        int[] resultingActions = {0,0,count};
+
+        for (Part block: blocks) {
+            if (pBlock.intersects(block.getBounds())) { // if player collides with solid blocks
+                resultingActions[0] = -1;
+            }
+            if (eBlock.intersects(block.getBounds())) { // if enemy collides with solid blocks
+                resultingActions[1] = -1;
+            }
+        }
+
+        if (pBlock.intersects(getBounds())) { // if player collides with highlighted block
+            Part temp = new Part(x, y, DIAMETER);
+            blocks.add(temp);
+            /* if (game.speed >= 100) {
+                game.speed -= 15;
+                }*/
+            count += 1;
+            resultingActions[2] = count;
+            newFood(game.frame.getWidth(), game.frame.getHeight());
+        }
+
+        return resultingActions;
+    }
 }

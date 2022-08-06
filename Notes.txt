@@ -15,6 +15,11 @@
  * Give block a face? 
  * 
  *
+ * 7/31/22
+ * New game (extension) idea
+ * let the player pick up the piece for a set # of spaces/seconds
+ * if they press a certain key, "pick up piece"
+ * Countdown on block (or color fades to black) for remaining time
  * 
  * Splash Screen w/brand name
  * High score file 

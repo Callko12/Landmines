@@ -1,9 +1,13 @@
 import java.awt.Graphics2D;
+import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.Random;
 
 public class Part {
+	static int screenSize;
+	Random rand = new Random();
 	int DIAMETER;
-	int x, y, xa, ya = 0;
+	int x, y = 0;
 	
 
 	public Part() {
@@ -20,11 +24,28 @@ public class Part {
 
 
 	public void paint(Graphics2D g) {
+        g.setColor(Color.red);
 		g.fillRect(x, y, DIAMETER, DIAMETER);
 	}
 
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, DIAMETER, DIAMETER);
+	}
+
+	public int[] getLocation() {
+		int[] arr={x,y};
+		return arr;
+	}
+
+	public void setSize(int d) {
+		DIAMETER = d;
+	}
+
+	public void setRandLocation(int w, int h) {
+		x = (int) (rand.nextInt(w - DIAMETER)/DIAMETER) * DIAMETER;
+		y = (int) (rand.nextInt(h- DIAMETER)/DIAMETER) * DIAMETER;
+		System.out.println("frame: "  + w + " " + h);
+		System.out.println("New block: "  + this.getLocation()[0] + " " + this.getLocation()[1]);
 	}
 
 }
