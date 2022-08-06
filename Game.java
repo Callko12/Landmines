@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
+import java.awt.Dimension;
 
 
 //@SuppressWarnings("serial")
@@ -32,7 +33,6 @@ public class Game extends JPanel { // implements ActionListener{
 		}*/
         highScore = 0;
 		prompt();
-		Part.screenSize=fSize;
 		Game game = new Game(fSize, speed); 
 	}
 
@@ -116,10 +116,10 @@ public class Game extends JPanel { // implements ActionListener{
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);
+		
+		setSize(this.getSize(), sSize);
 
-		setSize(sSize);
-		food.newFood(frame.getWidth(), frame.getHeight());
-
+		food.newFood();
 		while(true) {
 			move();
 			repaint();
@@ -153,9 +153,9 @@ public class Game extends JPanel { // implements ActionListener{
 		
 	}*/
 
-	public void setSize(int s) {
+	public void setSize(Dimension d, int s) {
 		player.setSize(s);
-		food.setSize(s);
+		food.setSize(d, s);
 		enemy.setSize(s);
 	}
 
@@ -225,7 +225,7 @@ public class Game extends JPanel { // implements ActionListener{
 	} 
 
 	public int[] getFrameSize() {
-		int[] ret = {this.frame.getWidth(), this.frame.getHeight()};
+		int[] ret = {this.getWidth(), this.getHeight()};
 		return ret;
 	}
 

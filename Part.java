@@ -2,9 +2,10 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.Random;
+import java.awt.Dimension;
 
 public class Part {
-	static int screenSize;
+	int[] screenDimension = {0,0};
 	Random rand = new Random();
 	int DIAMETER;
 	int x, y = 0;
@@ -41,10 +42,16 @@ public class Part {
 		DIAMETER = d;
 	}
 
-	public void setRandLocation(int w, int h) {
-		x = (int) (rand.nextInt(w - DIAMETER)/DIAMETER) * DIAMETER;
-		y = (int) (rand.nextInt(h- DIAMETER)/DIAMETER) * DIAMETER;
-		System.out.println("frame: "  + w + " " + h);
+	public void setSize(Dimension s, int d) {
+		DIAMETER = d;
+		screenDimension[0] = s.width;
+		screenDimension[1] = s.height;
+	}
+
+	public void setRandLocation() {
+		x = (int) (rand.nextInt(screenDimension[0] - DIAMETER)/DIAMETER) * DIAMETER;
+		y = (int) (rand.nextInt(screenDimension[1] - DIAMETER)/DIAMETER) * DIAMETER;
+		System.out.println("frame: "  + screenDimension[0] + " " + screenDimension[1]);
 		System.out.println("New block: "  + this.getLocation()[0] + " " + this.getLocation()[1]);
 	}
 

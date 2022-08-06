@@ -24,13 +24,13 @@ public class Food extends Part{
 	}
     
     
-	public void newFood(int w, int h) {
-		setRandLocation(w, h);
+	public void newFood() {
+		setRandLocation();
 
         // IF coordinates already exist in block array, reset
         for (Part block: blocks) {
 			if ((x == block.x) && (y == block.y)) {
-				newFood(w, h);
+				newFood();
                 break;
 			}
 		}
@@ -56,7 +56,7 @@ public class Food extends Part{
                 }*/
             count += 1;
             resultingActions[2] = count;
-            newFood(game.frame.getWidth(), game.frame.getHeight());
+            newFood();
         }
 
         return resultingActions;
