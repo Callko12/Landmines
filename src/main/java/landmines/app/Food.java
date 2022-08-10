@@ -1,3 +1,5 @@
+package landmines.app;
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Color;
@@ -6,6 +8,7 @@ import java.util.*;
 public class Food extends Part{
 	Random rand = new Random();
     int count = 0;
+    int startSize = 5;
     Vector<Part> blocks = new Vector<Part>(5);
 
 	public Food() {
@@ -25,7 +28,7 @@ public class Food extends Part{
 	public void newFood() {
 		setRandLocation();
 
-        // IF coordinates already exist in block array, reset
+        // If coordinates already exist in block array, reset
         for (Part block: blocks) {
 			if ((x == block.x) && (y == block.y)) {
 				newFood();
@@ -33,6 +36,15 @@ public class Food extends Part{
 			}
 		}
 	}
+
+    public void newFood(int c) {
+        while (c > 0) {
+            newFood();
+            Part temp = new Part(x, y, DIAMETER);
+            blocks.add(temp);
+            c --;
+        }
+    }
 
     public int[] checkCollision(Rectangle pBlock, Rectangle eBlock) {
         int[] resultingActions = {0,0,count};

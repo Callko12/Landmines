@@ -1,3 +1,5 @@
+package landmines.app;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.KeyListener;
@@ -16,26 +18,17 @@ public class Game extends JPanel { // implements ActionListener{
 	JMenuBar menuBar;
 	JMenuItem diff, size, score;
     JLabel lScore, hScore;
-	static int speed, speed2; // speed2 is to reset the speed
-	static int fSize; // frame size
-	static int sSize; // mine (part) size
+	public static int speed, speed2; // speed2 is to reset the speed
+	public static int fSize; // frame size
+	public static int sSize; // mine (part) size
     
-    static int levelScore, highScore;
+    public static int levelScore, highScore;
 
 	//ifstream Scores;
 
-	public static void main(String[] args) throws InterruptedException {
-
-		/*Scores.open("Scores.txt");
-		if (Scores.fail()) {
-			System.out.println("Unable to read Scores file");
-			System.exit(0);
-		}*/
+	public Game() {
         highScore = 0;
-		prompt();
-		Game game = new Game(fSize, speed); 
 	}
-
 
 	public Game(int fS, int spd) throws InterruptedException  {
 
@@ -119,6 +112,7 @@ public class Game extends JPanel { // implements ActionListener{
 		
 		setSize(this.getSize(), sSize);
 
+		food.newFood(5);
 		food.newFood();
 		while(true) {
 			move();
@@ -159,7 +153,7 @@ public class Game extends JPanel { // implements ActionListener{
 		enemy.setSize(d, s);
 	}
 
-    static void prompt() {
+    public static void prompt() {
         Object[] poss = {"easy", "medium", "hard"};
         String s = (String)JOptionPane.showInputDialog(null, "Choose Level", "Choose Level", JOptionPane.PLAIN_MESSAGE, null, poss, "easy");
         

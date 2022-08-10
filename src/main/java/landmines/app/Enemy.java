@@ -1,3 +1,5 @@
+package landmines.app;
+
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -38,9 +40,10 @@ public class Enemy extends Part{
 		return 0;
 	}
 
-	public void reset() {
-		x = 0;
-		y = 0;
+	public void reset() throws InterruptedException{
+		// x = 0;
+		// y = 0;
+		setRandCorner();
 	}
 
 }

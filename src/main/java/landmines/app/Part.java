@@ -1,3 +1,5 @@
+package landmines.app;
+
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -51,6 +53,11 @@ public class Part {
 	public void setRandLocation() {
 		x = (int) (rand.nextInt(maxWidth)/DIAMETER) * DIAMETER;
 		y = (int) (rand.nextInt(maxHeight)/DIAMETER) * DIAMETER;
+	}
+
+	public void setRandCorner() {
+		x = rand.nextBoolean() ? 0 : maxWidth;
+		y = rand.nextBoolean() ? 0 : maxHeight;
 	}
 
 }
